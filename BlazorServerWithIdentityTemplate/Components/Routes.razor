@@ -1,0 +1,15 @@
+﻿@using BlazorServerWithIdentityTemplate
+@using BlazorServerWithIdentityTemplate.Components
+@using BlazorServerWithIdentityTemplate.Components.IdentityPages
+@using Microsoft.AspNetCore.Components.Authorization
+<CascadingAuthenticationState>
+    <Router AppAssembly="typeof(Program).Assembly">
+        <Found Context="routeData">
+            <AuthorizeRouteView RouteData="@routeData" DefaultLayout="@typeof(Layout.MainLayout)">
+                <NotAuthorized>
+                    <Login></Login>
+                </NotAuthorized>
+            </AuthorizeRouteView>
+        </Found>
+    </Router>
+</CascadingAuthenticationState>

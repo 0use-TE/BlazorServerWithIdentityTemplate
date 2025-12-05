@@ -1,0 +1,109 @@
+﻿@page "/Login"
+@using System.ComponentModel.DataAnnotations
+@using BlazorServerWithIdentityTemplate
+@using BlazorServerWithIdentityTemplate.Components
+@using BlazorServerWithIdentityTemplate.DataPersistence.IdentityModels
+@using Microsoft.AspNetCore.Http
+@using Microsoft.AspNetCore.Identity;
+@using Microsoft.EntityFrameworkCore
+@inject NavigationManager Navigation
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+@inject ISnackbar Snackbar
+<MudContainer MaxWidth="MaxWidth.Large" Class="mt-8">
+    <EditForm Model="@model" OnValidSubmit="AccountLogin">
+        <DataAnnotationsValidator />
+
+        <MudGrid Spacing="4">
+            <MudItem xs="12" md="7">
+                <MudCard Outlined="true" Class="pa-8">
+                    <MudCardHeader>
+                        <MudText Typo="Typo.h5" Class="mb-6" Color="Color.Primary">欢迎登录</MudText>
+                    </MudCardHeader>
+                    <MudCardContent>
+                        <MudTextField @bind-Value="model.Account"
+                                      Label="账号"
+                                      Variant="Variant.Outlined"
+                                      Required="true"
+                                      RequiredError="必须填写账号"
+                                      MaxLength="20"
+                                      Class="mb-4" />
+
+                        <MudTextField @bind-Value="model.Password"
+                                      Label="密码"
+                                      Variant="Variant.Outlined"
+                                      InputType="InputType.Password"
+                                      Required="true"
+                                      RequiredError="必须填写密码"
+                                      MaxLength="20"
+                                      Class="mb-6" />
+                    </MudCardContent>
+                    <MudCardActions>
+                        <MudButton Class="ml-auto" Variant="Variant.Outlined"
+                                   Color="Color.Primary" ButtonType="ButtonType.Submit">
+                            登录
+                        </MudButton>
+                    </MudCardActions>
+                </MudCard>
+            </MudItem>
+
+            <MudItem xs="12" md="5" Class="d-flex">
+                <MudCard Outlined="true" Class="pa-6 " Style="height:100%;width:100%;min-height:200px">
+                    <MudText Typo="Typo.h6" GutterBottom="true" Color="Color.Info">验证错误</MudText>
+                    <ValidationSummary style="color:red" />
+                </MudCard>
+            </MudItem>
+
+        </MudGrid>
+    </EditForm>
+</MudContainer>
+
+@code {
+    private class User
+    {
+        [Required(ErrorMessage = "必须填写账号")]
+        [StringLength(20,MinimumLength =4, ErrorMessage = "账号长度必须在 4-20 位之间")]
+        public string? Account { get; set; }
+
+        [Required(ErrorMessage = "必须填写密码")]
+        [StringLength(20, MinimumLength = 4, ErrorMessage = "密码长度必须在 4-20 位之间")]
+        public string? Password { get; set; }
+    }
+
+    private User model = new();
+    private async Task AccountLogin()
+    {
+        if (string.IsNullOrWhiteSpace(model?.Account) || string.IsNullOrWhiteSpace(model?.Password))
+        {
+            Snackbar.Add("账号或密码不能为空", Severity.Warning);
+            return;
+        }
+
+        var loginUser = await UserManager.FindByNameAsync(model.Account);
+
+        if (loginUser is null)
+        {
+            Snackbar.Add("用户不存在", Severity.Error);
+            return;
+        }
+
+        var signResult = await SignInManager.CheckPasswordSignInAsync(loginUser, model.Password, false);
+
+        if (signResult.Succeeded)
+        {
+            Snackbar.Add("登录成功", Severity.Success);
+
+            // 构建查询字符串
+            var query = new QueryString()
+                .Add("Account", model.Account)
+                .Add("Password", model.Password);
+
+            var url = $"api/Account/Login{query}";
+            Navigation.NavigateTo(url, forceLoad: true);
+        }
+        else
+        {
+            Snackbar.Add("登录失败，密码错误", Severity.Error);
+        }
+    }
+}
