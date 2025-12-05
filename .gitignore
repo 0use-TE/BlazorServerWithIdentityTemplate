@@ -363,3 +363,4 @@ MigrationBackup/
 FodyWeavers.xsd
 /LabEquipmentManageSys/app.db-shm
 /LabEquipmentManageSys/app.db-wal
+/BlazorServerWithIdentityTemplate/app.db
