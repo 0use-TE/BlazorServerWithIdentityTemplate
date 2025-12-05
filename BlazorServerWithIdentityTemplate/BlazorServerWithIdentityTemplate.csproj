@@ -5,6 +5,9 @@
 		<Nullable>enable</Nullable>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<IsPackable>true</IsPackable>
+		<Title>BlazorServerWithIdentityTemplate</Title>
+		<PackageProjectUrl></PackageProjectUrl>
+		<RepositoryUrl>https://github.com/0use-TE/BlazorServerWithIdentityTemplate</RepositoryUrl>
 	</PropertyGroup>
 
 	<ItemGroup>
