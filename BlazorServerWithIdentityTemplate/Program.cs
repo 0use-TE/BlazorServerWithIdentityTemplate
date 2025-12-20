@@ -44,6 +44,9 @@ builder.Services.ConfigureApplicationCookie(options =>
 });
 
 builder.Services.AddControllers();
+
+builder.Services.AddScoped<UserContext>();
+
 //初始化管理员
 builder.Services.AddHostedService<DefaultUserInitializer>();
 

@@ -1,2 +1,13 @@
 ﻿@page "/"
 @attribute [Authorize]
+@inject UserContext UserContext
+
+<MudText Typo="Typo.h4" Color="Color.Success">Welcome:</MudText>
+<MudText Color="Color.Primary">@name</MudText>
+@code {
+    private string name = "Loading";
+    protected override async Task OnInitializedAsync()
+    {
+        name = await UserContext.GetUserNameAsync() ?? "无名称";
+    }
+}
