@@ -364,3 +364,5 @@ FodyWeavers.xsd
 /LabEquipmentManageSys/app.db-shm
 /LabEquipmentManageSys/app.db-wal
 /BlazorServerWithIdentityTemplate/app.db
+/BlazorServerWithIdentityTemplate/app.db-shm
+/BlazorServerWithIdentityTemplate/app.db-wal
