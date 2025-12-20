@@ -1,8 +1,8 @@
-﻿using BlazorServerWithIdentityTemplate.DataPersistence.IdentityModels;
+﻿using BlazorServerWithIdentity.DataPersistence.IdentityModels;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
-namespace BlazorServerWithIdentityTemplate.DataPersistence
+namespace BlazorServerWithIdentity.DataPersistence
 {
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {

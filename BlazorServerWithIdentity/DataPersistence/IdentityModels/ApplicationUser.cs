@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 
-namespace BlazorServerWithIdentityTemplate.DataPersistence.IdentityModels
+namespace BlazorServerWithIdentity.DataPersistence.IdentityModels
 {
     public class ApplicationUser:IdentityUser
     {

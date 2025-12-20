@@ -1,11 +1,11 @@
-﻿using BlazorServerWithIdentityTemplate.DataPersistence.IdentityModels;
+﻿using BlazorServerWithIdentity.DataPersistence.IdentityModels;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
-namespace BlazorServerWithIdentityTemplate.Controllers
+namespace BlazorServerWithIdentity.Controllers
 {
     [Route("api/[controller]/[action]")]
     [ApiController]

@@ -1,9 +1,9 @@
 ﻿
-using BlazorServerWithIdentityTemplate.DataPersistence.IdentityModels;
+using BlazorServerWithIdentity.DataPersistence.IdentityModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Options;
 
-namespace BlazorServerWithIdentityTemplate.Services
+namespace BlazorServerWithIdentity.Services
 {
     public class DefaultUser
     {
