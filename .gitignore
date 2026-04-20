@@ -366,3 +366,5 @@ FodyWeavers.xsd
 /BlazorServerWithIdentityTemplate/app.db
 /BlazorServerWithIdentityTemplate/app.db-shm
 /BlazorServerWithIdentityTemplate/app.db-wal
+
+/_site

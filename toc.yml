@@ -1,0 +1,13 @@
+- name: Documentation
+  href: docs/
+  items:
+  - name: Introduction
+    href: docs/introduction.md
+  - name: Getting Started
+    href: docs/getting-started.md
+  - name: Configuration
+    href: docs/configuration.md
+  - name: Authentication
+    href: docs/authentication.md
+  - name: API Reference
+    href: docs/api.md
